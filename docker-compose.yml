@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    env_file: .env
+    environment:
+      TZ: ${TZ:-Europe/Moscow}
+    ports: ["127.0.0.1:8010:8000"]
+    volumes: ["data:/data"]
+    depends_on: [tunnel]
+    restart: unless-stopped
+
+  # По умолчанию — quick-туннель: адрес выдаётся сам, аккаунт и домен не нужны.
+  # Для постоянного адреса: TUNNEL_ARGS=run --token <токен> в .env
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate ${TUNNEL_ARGS:---url http://app:8000 --metrics 0.0.0.0:2000}
+    restart: unless-stopped
+
+volumes:
+  data:
