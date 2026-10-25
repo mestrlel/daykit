@@ -1,4 +1,4 @@
-# For GitHub — Telegram Mini App
+# DayKit — Telegram Mini App
 
 Личное приложение для слов, привычек, важных дат и фокуса. Доступ к данным есть только у владельца бота: сервер проверяет подпись Telegram и `OWNER_TELEGRAM_ID`.
 

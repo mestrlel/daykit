@@ -28,7 +28,7 @@ def kb():
     if not URL:
         return None
     return InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="🎮 Открыть", web_app=WebAppInfo(url=URL))]])
+        InlineKeyboardButton(text="Открыть DayKit", web_app=WebAppInfo(url=URL))]])
 
 
 async def probe_url():
@@ -69,7 +69,7 @@ async def start(m: Message):
     if m.from_user.id != OWNER:
         return
     await refresh_url(m.bot)
-    await m.answer("Привет! Твоё меню: словарь, привычки, фокус.", reply_markup=kb())
+    await m.answer("Привет! Это DayKit: словарь, привычки, важные даты и фокус.", reply_markup=kb())
 
 
 @dp.message(Command("stats"))
